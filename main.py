@@ -22,6 +22,8 @@ logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
+moves = ['L', 'R']
+last_action = ''
 
 @app.route("/", methods=['GET'])
 def index():
@@ -31,7 +33,6 @@ def index():
 def move():
     request.get_data()
     logger.info(request.json)
-    moves = ['L', 'R']
     
     # TODO add your implementation here to replace the random response
     input = request.json
@@ -51,15 +52,19 @@ def move():
         if k == mylink:
             my_state = v
 
-    action = moves[random.randrange(len(moves))]
+    global last_action
+    action = last_action
+    if action == '':
+        action = moves[random.randrange(len(moves))]
+
     if someone_in_front(my_state, arena_map, width, height):
         action = 'T'
     elif not facing_wall(my_state, width, height):
-        moves.append('F')
-        action = moves[random.randrange(len(moves))]
-    
+        action = 'F'
 
+    
     print("action: " + action)
+    last_action = action
     return action
 
 def facing_wall(my_state, width, height):
