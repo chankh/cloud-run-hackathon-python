@@ -60,7 +60,7 @@ def move():
     print("action: " + action)
     return action
 
-def initialize_arena(height, width):
+def initialize_arena(width, height):
     arena = []
     for i in range(height):
         x = []
