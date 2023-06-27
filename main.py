@@ -40,7 +40,7 @@ def move():
     arena = input['arena']
     width = arena['dims'][0]
     height = arena['dims'][1]
-    arena_map = initialize_arena(width, height)
+    arena_map = [[None for x in range(width)] for y in range(height)]
     state = arena['state']
     for k in state:
         v = state[k]
@@ -48,8 +48,6 @@ def move():
         y = v['y']
         print("{}, {} is {}".format(y, x, k))
         arena_map[y][x] = k
-        for i in arena_map:
-            print(i)
         if k == mylink:
             my_state = v
 
@@ -59,16 +57,6 @@ def move():
 
     print("action: " + action)
     return action
-
-def initialize_arena(width, height):
-    arena = []
-    for i in range(height):
-        x = []
-        for j in range(width):
-            x.append(None)
-        arena.append(x)
-    
-    return arena
 
 def someone_in_front(my_state, arena, width, height):
     d = my_state['direction']
@@ -97,18 +85,18 @@ def someone_in_front(my_state, arena, width, height):
             print("Target {} at {}, {}".format(arena[x-3][y], x-3, y))
             return True
     elif d == 'E':
-        if x+1 > width and arena[x+1][y] is not None:
+        if x+1 < width and arena[x+1][y] is not None:
             return True
-        if x+2 > width and arena[x+2][y] is not None:
+        if x+2 < width and arena[x+2][y] is not None:
             return True
-        if x+3 > width and arena[x+3][y] is not None:
+        if x+3 < width and arena[x+3][y] is not None:
             return True
     elif d == 'S':
-        if y+1 > height and arena[x][y+1] is not None:
+        if y+1 < height and arena[x][y+1] is not None:
             return True
-        if y+2 > height and arena[x][y+2] is not None:
+        if y+2 < height and arena[x][y+2] is not None:
             return True
-        if y+3 > height and arena[x][y+3] is not None:
+        if y+3 < height and arena[x][y+3] is not None:
             return True
     else:
         return False
