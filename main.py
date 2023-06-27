@@ -86,7 +86,7 @@ def someone_in_front(my_state, arena, width, height):
             return True
         if y+3 >= 0 and arena[x][y+3] is not None:
             return True
-    else
+    else:
         return False            
 
 if __name__ == "__main__":
