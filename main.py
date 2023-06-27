@@ -77,18 +77,18 @@ def someone_in_front(my_state, arena, width, height):
         if x-3 >= 0 and arena[x-3][y] is not None:
             return True
     elif d == 'E':
-        if x+1 >= width and arena[x+1][y] is not None:
+        if x+1 > width and arena[x+1][y] is not None:
             return True
-        if x+2 >= width and arena[x+2][y] is not None:
+        if x+2 > width and arena[x+2][y] is not None:
             return True
-        if x+3 >= width and arena[x+3][y] is not None:
+        if x+3 > width and arena[x+3][y] is not None:
             return True
     elif d == 'S':
-        if y+1 >= height and arena[x][y+1] is not None:
+        if y+1 > height and arena[x][y+1] is not None:
             return True
-        if y+2 >= height and arena[x][y+2] is not None:
+        if y+2 > height and arena[x][y+2] is not None:
             return True
-        if y+3 >= height and arena[x][y+3] is not None:
+        if y+3 > height and arena[x][y+3] is not None:
             return True
     else:
         return False            
