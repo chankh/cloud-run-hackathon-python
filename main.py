@@ -40,13 +40,16 @@ def move():
     arena = input['arena']
     width = arena['dims'][0]
     height = arena['dims'][1]
-    arena_map = [[None] * height]* width
+    arena_map = initialize_arena(width, height)
     state = arena['state']
     for k in state:
         v = state[k]
         x = v['x']
         y = v['y']
-        arena_map[x][y] = k
+        print("{}, {} is {}".format(y, x, k))
+        arena_map[y][x] = k
+        for i in arena_map:
+            print(i)
         if k == mylink:
             my_state = v
 
@@ -56,6 +59,16 @@ def move():
 
     print("action: " + action)
     return action
+
+def initialize_arena(height, width):
+    arena = []
+    for i in range(height):
+        x = []
+        for j in range(width):
+            x.append(None)
+        arena.append(x)
+    
+    return arena
 
 def someone_in_front(my_state, arena, width, height):
     d = my_state['direction']
