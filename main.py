@@ -54,7 +54,7 @@ def move():
 
     global last_action
     action = last_action
-    if action == '':
+    if action != 'R' or action != 'L':
         action = moves[random.randrange(len(moves))]
 
     if someone_in_front(my_state, arena_map, width, height):
