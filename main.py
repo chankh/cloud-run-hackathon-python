@@ -22,7 +22,7 @@ logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
-moves = ['F', 'L', 'R']
+moves = ['L', 'R']
 
 @app.route("/", methods=['GET'])
 def index():
@@ -54,9 +54,30 @@ def move():
     action = moves[random.randrange(len(moves))]
     if someone_in_front(my_state, arena_map, width, height):
         action = 'T'
+    elif not facing_wall(my_state, width, height):
+        moves.append('F')
+        action = moves[random.randrange(len(moves))]
+    
 
     print("action: " + action)
     return action
+
+def facing_wall(my_state, width, height):
+    d = my_state['direction']
+    x = my_state['x']
+    y = my_state['y']
+
+    if d == 'N' and y == 0:
+        return True
+    if d == 'W' and x == 0:
+        return True
+    if d == 'S' and y == height - 1:
+        return True
+    if d == 'E' and y == width -1:
+        return True
+
+    return False
+
 
 def someone_in_front(my_state, arena, width, height):
     d = my_state['direction']
