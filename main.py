@@ -50,9 +50,12 @@ def move():
         if k == mylink:
             my_state = v
 
+    action = moves[random.randrange(len(moves))]
     if someone_in_front(my_state, arena_map, width, height):
-        return 'T'
-    return moves[random.randrange(len(moves))]
+        action = 'T'
+
+    print("action: " + action)
+    return action
 
 def someone_in_front(my_state, arena, width, height):
     d = my_state['direction']
