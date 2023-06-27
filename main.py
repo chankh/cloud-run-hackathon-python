@@ -86,17 +86,23 @@ def someone_in_front(my_state, arena, width, height):
             return True
     elif d == 'E':
         if x+1 < width and arena[y][x+1] is not None:
+            print("Target {} at {}, {}".format(arena[y][x+1], y, x+1))
             return True
         if x+2 < width and arena[y][x+2] is not None:
+            print("Target {} at {}, {}".format(arena[y][x+2], y, x+2))
             return True
         if x+3 < width and arena[y][x+3] is not None:
+            print("Target {} at {}, {}".format(arena[y][x+3], y, x+3))
             return True
     elif d == 'S':
         if y+1 < height and arena[y+1][x] is not None:
+            print("Target {} at {}, {}".format(arena[y+1][x], y+1, x))
             return True
         if y+2 < height and arena[y+2][x] is not None:
+            print("Target {} at {}, {}".format(arena[y+2][x], y+2, x))
             return True
         if y+3 < height and arena[y+3][x] is not None:
+            print("Target {} at {}, {}".format(arena[y+3][x], y+3, x))
             return True
     else:
         return False
