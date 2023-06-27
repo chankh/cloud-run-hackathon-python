@@ -78,7 +78,7 @@ def facing_wall(my_state, width, height):
         return True
     if d == 'S' and y == height - 1:
         return True
-    if d == 'E' and y == width -1:
+    if d == 'E' and x == width -1:
         return True
 
     return False
