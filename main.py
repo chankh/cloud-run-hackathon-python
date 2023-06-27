@@ -49,7 +49,7 @@ def move():
         if k == mylink:
             my_state = v
 
-    if someone_in_front(my_state, arena_map):
+    if someone_in_front(my_state, arena_map, width, height):
         return 'T'
     return moves[random.randrange(len(moves))]
 
