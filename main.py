@@ -62,19 +62,26 @@ def someone_in_front(my_state, arena, width, height):
     x = my_state['x']
     y = my_state['y']
 
+    print("direction: {}, x: {}, y: {}".format(d, x, y))
     if d == 'N':
         if y-1 >= 0 and arena[x][y-1] is not None:
+            print("Target {} at {}, {}".format(arena[x][y-1], x, y-1))
             return True
         if y-2 >= 0 and arena[x][y-2] is not None:
+            print("Target {} at {}, {}".format(arena[x][y-2], x, y-2))
             return True
         if y-3 >= 0 and arena[x][y-3] is not None:
+            print("Target {} at {}, {}".format(arena[x][y-3], x, y-3))
             return True
     elif d == 'W':
         if x-1 >= 0 and arena[x-1][y] is not None:
+            print("Target {} at {}, {}".format(arena[x-1][y], x-1, y))
             return True
         if x-2 >= 0 and arena[x-2][y] is not None:
+            print("Target {} at {}, {}".format(arena[x-2][y], x-2, y))
             return True
         if x-3 >= 0 and arena[x-3][y] is not None:
+            print("Target {} at {}, {}".format(arena[x-3][y], x-3, y))
             return True
     elif d == 'E':
         if x+1 > width and arena[x+1][y] is not None:
@@ -91,7 +98,7 @@ def someone_in_front(my_state, arena, width, height):
         if y+3 > height and arena[x][y+3] is not None:
             return True
     else:
-        return False            
+        return False
 
 if __name__ == "__main__":
   app.run(debug=False,host='0.0.0.0',port=int(os.environ.get('PORT', 8080)))
