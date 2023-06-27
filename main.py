@@ -22,7 +22,7 @@ logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
-moves = ['F', 'T', 'L', 'R']
+moves = ['F', 'L', 'R']
 
 @app.route("/", methods=['GET'])
 def index():
@@ -34,8 +34,60 @@ def move():
     logger.info(request.json)
     
     # TODO add your implementation here to replace the random response
-    
+    input = request.json
+    my_state = {}
+    mylink = input["_link"]["self"]["href"]
+    arena_map = []
+    arena = input['arena']
+    width = arena['dims'][0]
+    height = arena['dims'][1]
+    state = arena['state']
+    for k, v in state:
+        x = v['x']
+        y = v['y']
+        arena_map[x][y] = k
+        if k == mylink:
+            my_state = v
+
+    if someone_in_front(my_state, arena_map):
+        return 'T'
     return moves[random.randrange(len(moves))]
+
+def someone_in_front(my_state, arena, width, height):
+    d = my_state['direction']
+    x = my_state['x']
+    y = my_state['y']
+
+    if d == 'N':
+        if y-1 >= 0 and arena[x][y-1] is not None:
+            return True
+        if y-2 >= 0 and arena[x][y-2] is not None:
+            return True
+        if y-3 >= 0 and arena[x][y-3] is not None:
+            return True
+    elif d == 'W':
+        if x-1 >= 0 and arena[x-1][y] is not None:
+            return True
+        if x-2 >= 0 and arena[x-2][y] is not None:
+            return True
+        if x-3 >= 0 and arena[x-3][y] is not None:
+            return True
+    elif d == 'E':
+        if x+1 >= 0 and arena[x+1][y] is not None:
+            return True
+        if x+2 >= 0 and arena[x+2][y] is not None:
+            return True
+        if x+3 >= 0 and arena[x+3][y] is not None:
+            return True
+    elif d == 'S':
+        if y+1 >= 0 and arena[x][y+1] is not None:
+            return True
+        if y+2 >= 0 and arena[x][y+2] is not None:
+            return True
+        if y+3 >= 0 and arena[x][y+3] is not None:
+            return True
+    else
+        return False            
 
 if __name__ == "__main__":
   app.run(debug=False,host='0.0.0.0',port=int(os.environ.get('PORT', 8080)))
