@@ -22,7 +22,6 @@ logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
-moves = ['L', 'R']
 
 @app.route("/", methods=['GET'])
 def index():
@@ -32,6 +31,7 @@ def index():
 def move():
     request.get_data()
     logger.info(request.json)
+    moves = ['L', 'R']
     
     # TODO add your implementation here to replace the random response
     input = request.json
