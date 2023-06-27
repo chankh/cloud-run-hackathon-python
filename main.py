@@ -36,13 +36,14 @@ def move():
     # TODO add your implementation here to replace the random response
     input = request.json
     my_state = {}
-    mylink = input["_link"]["self"]["href"]
-    arena_map = []
+    mylink = input["_links"]["self"]["href"]
     arena = input['arena']
     width = arena['dims'][0]
     height = arena['dims'][1]
+    arena_map = [[None] * height]* width
     state = arena['state']
-    for k, v in state:
+    for k in state:
+        v = state[k]
         x = v['x']
         y = v['y']
         arena_map[x][y] = k
