@@ -65,38 +65,38 @@ def someone_in_front(my_state, arena, width, height):
 
     print("direction: {}, x: {}, y: {}".format(d, x, y))
     if d == 'N':
-        if y-1 >= 0 and arena[x][y-1] is not None:
-            print("Target {} at {}, {}".format(arena[x][y-1], x, y-1))
+        if y-1 >= 0 and arena[y-1][x] is not None:
+            print("Target {} at {}, {}".format(arena[y-1][x], y-1, x))
             return True
-        if y-2 >= 0 and arena[x][y-2] is not None:
-            print("Target {} at {}, {}".format(arena[x][y-2], x, y-2))
+        if y-2 >= 0 and arena[y-2][x] is not None:
+            print("Target {} at {}, {}".format(arena[y-2][x], y-2, x))
             return True
-        if y-3 >= 0 and arena[x][y-3] is not None:
-            print("Target {} at {}, {}".format(arena[x][y-3], x, y-3))
+        if y-3 >= 0 and arena[y-3][x] is not None:
+            print("Target {} at {}, {}".format(arena[y-3][x], y-3, x))
             return True
     elif d == 'W':
-        if x-1 >= 0 and arena[x-1][y] is not None:
-            print("Target {} at {}, {}".format(arena[x-1][y], x-1, y))
+        if x-1 >= 0 and arena[y][x-1] is not None:
+            print("Target {} at {}, {}".format(arena[y][x-1], y, x-1))
             return True
-        if x-2 >= 0 and arena[x-2][y] is not None:
-            print("Target {} at {}, {}".format(arena[x-2][y], x-2, y))
+        if x-2 >= 0 and arena[y][x-2] is not None:
+            print("Target {} at {}, {}".format(arena[y][x-2], y, x-2))
             return True
-        if x-3 >= 0 and arena[x-3][y] is not None:
-            print("Target {} at {}, {}".format(arena[x-3][y], x-3, y))
+        if x-3 >= 0 and arena[y][x-3] is not None:
+            print("Target {} at {}, {}".format(arena[y][x-3], y, x-3))
             return True
     elif d == 'E':
-        if x+1 < width and arena[x+1][y] is not None:
+        if x+1 < width and arena[y][x+1] is not None:
             return True
-        if x+2 < width and arena[x+2][y] is not None:
+        if x+2 < width and arena[y][x+2] is not None:
             return True
-        if x+3 < width and arena[x+3][y] is not None:
+        if x+3 < width and arena[y][x+3] is not None:
             return True
     elif d == 'S':
-        if y+1 < height and arena[x][y+1] is not None:
+        if y+1 < height and arena[y+1][x] is not None:
             return True
-        if y+2 < height and arena[x][y+2] is not None:
+        if y+2 < height and arena[y+2][x] is not None:
             return True
-        if y+3 < height and arena[x][y+3] is not None:
+        if y+3 < height and arena[y+3][x] is not None:
             return True
     else:
         return False
